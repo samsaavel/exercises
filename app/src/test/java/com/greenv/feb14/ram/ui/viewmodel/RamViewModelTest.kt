@@ -1,6 +1,5 @@
 package com.greenv.feb14.ram.ui.viewmodel
 
-import androidx.lifecycle.viewModelScope
 import com.greenv.feb14.network.NetworkResponse
 import com.greenv.feb14.repository.RamRepositoryContract
 import com.greenv.feb14.response.RamResponse
@@ -11,7 +10,6 @@ import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.*
 import org.junit.After
 import org.junit.Before
@@ -20,8 +18,15 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class RamViewModelTest {
 
+    private val unconfined = UnconfinedTestDispatcher()
+    private val standardScheduler = TestCoroutineScheduler()
+    private val standard = StandardTestDispatcher(standardScheduler)
+
     @MockK
     lateinit var ramRepo: RamRepositoryContract
+
+    @MockK
+    lateinit var fakeResponse: RamResponse
 
     @MockK
     private lateinit var ramViewModel: RamViewModel
@@ -29,10 +34,14 @@ class RamViewModelTest {
     @MockK
     private lateinit var failure: NetworkResponse.Failure
 
+    @MockK
+    private lateinit var success: NetworkResponse.Success<RamResponse>
+
     @Before
     fun setup() {
         MockKAnnotations.init(this)
-        ramViewModel = RamViewModel()
+        Dispatchers.setMain(unconfined)
+        ramViewModel = RamViewModel(ramRepo)
     }
 
     @After
@@ -50,5 +59,18 @@ class RamViewModelTest {
 
         //Then
         assert(ramViewModel.ramState.value is RamState.Failure)
+    }
+
+    @Test
+    fun `fetchCharacters publishes success with data when repo send success`() {
+        //Given
+        coEvery { ramRepo.fetchCharacters() }.returns(success)
+        coEvery { success.data }.returns(fakeResponse)
+
+        //When
+        ramViewModel.fetchCharacters()
+
+        //Then
+        assert(ramViewModel.ramState.value is RamState.Success)
     }
 }

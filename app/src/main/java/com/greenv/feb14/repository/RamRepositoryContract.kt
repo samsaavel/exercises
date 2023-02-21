@@ -17,15 +17,15 @@ class RamRepository(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : RamRepositoryContract {
 
-    override suspend fun fetchCharacters(): NetworkResponse<RamResponse> =
-        withContext(dispatcher) {
-            try {
-                val responseFromApi = ramApi.getCharacters()
-                NetworkResponse.Success(responseFromApi)
-            } catch (e: Throwable) {
-                Log.d("vaneDebug", "fetchCharacters: " +
-                        e.localizedMessage!!.toString())
-                NetworkResponse.Failure(e)
-            }
+    override suspend fun fetchCharacters(): NetworkResponse<RamResponse> = withContext(dispatcher) {
+        try {
+            val responseFromApi = ramApi.getCharacters()
+            Log.d("vaneDebug", "fetchCharacters: " + responseFromApi.info)
+            Log.d("vaneDebug", "fetchCharacters: " + responseFromApi.results.size)
+            NetworkResponse.Success(responseFromApi)
+        } catch (e: Throwable) {
+            Log.d("vaneDebug", "fetchCharacters: " + e.localizedMessage!!.toString())
+            NetworkResponse.Failure(e)
         }
+    }
 }
