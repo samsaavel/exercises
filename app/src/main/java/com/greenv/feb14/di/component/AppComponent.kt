@@ -6,7 +6,7 @@ import com.greenv.feb14.di.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
@@ -14,7 +14,7 @@ import javax.inject.Singleton
     modules = [
         ActivityBuilderModule::class,
         FragmentBuilderModule::class,
-        AndroidSupportInjection::class,
+        AndroidSupportInjectionModule::class,
         ViewModelFactoryModule::class,
         ViewModelModule::class,
         RepositoryModule::class

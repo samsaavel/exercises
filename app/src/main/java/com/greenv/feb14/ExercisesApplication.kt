@@ -1,12 +1,9 @@
 package com.greenv.feb14
 
-import android.app.Application
-import dagger.android.AndroidInjector
+import com.greenv.feb14.di.component.DaggerAppComponent
 import dagger.android.DaggerApplication
 
-class ExercisesApplication : Application() {
-    fun applicationInjector(): AndroidInjector<out DaggerApplication>? {
-        return null
-    }
+class ExercisesApplication : DaggerApplication() {
+    override fun applicationInjector() = DaggerAppComponent.factory().create(this)
 
 }

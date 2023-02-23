@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-android'
 }
 android {
     namespace 'com.greenv.feb14'
@@ -66,10 +67,17 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2"
 
-    implementation 'com.google.dagger:dagger-android:2.35.1'
-    implementation 'com.google.dagger:dagger-android-support:2.21' // if you use the support libraries
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.21'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.21'
+//    implementation 'com.google.dagger:dagger-android:2.35.1'
+//    implementation 'com.google.dagger:dagger-android-support:2.21' // if you use the support libraries
+//    annotationProcessor 'com.google.dagger:dagger-android-processor:2.21'
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.21'
+
+    implementation "com.google.dagger:dagger:2.27"
+    implementation "com.google.dagger:dagger-android:2.27"
+    implementation "com.google.dagger:dagger-android-support:2.27"
+    kapt "com.google.dagger:dagger-android-processor:2.27"
+    kapt "com.google.dagger:dagger-compiler:2.27"
+    kapt 'org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0'
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 }
