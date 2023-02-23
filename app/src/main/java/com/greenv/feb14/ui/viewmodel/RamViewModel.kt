@@ -1,4 +1,4 @@
-package com.greenv.feb14.ui
+package com.greenv.feb14.ui.viewmodel
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
@@ -8,6 +8,7 @@ import com.greenv.feb14.network.NetworkResponse
 import com.greenv.feb14.repository.RamRepository
 import com.greenv.feb14.repository.RamRepositoryContract
 import com.greenv.feb14.response.RamResponse
+import com.greenv.feb14.ui.RamState
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

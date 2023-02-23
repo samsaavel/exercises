@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.greenv.feb14.ui.fragments.RaMFragment
+import com.greenv.feb14.ui.fragments.ServiceFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bottomNavigation = findViewById(R.id.bottom_navigation)
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, FirstFragment()).commit()
+            .replace(R.id.fragment_container, RaMFragment()).commit()
         navController()
     }
     
@@ -22,15 +24,15 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.page_1 -> {
-                    loadFragment(FirstFragment())
+                    loadFragment(RaMFragment())
                     true
                 }
                 R.id.page_2 -> {
-                    loadFragment(SecondFragment())
+                    loadFragment(ServiceFragment())
                     true
                 }
                 else -> {
-               loadFragment(FirstFragment())
+               loadFragment(RaMFragment())
                     true
                 }
             }

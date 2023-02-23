@@ -10,6 +10,7 @@ import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockkStatic
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -29,7 +30,7 @@ class RamRepositoryTest {
         mockkStatic(Log::class)
         every { Log.d(any(), any()) } returns 0
         MockKAnnotations.init(this)
-        ramRepo = RamRepository(ramApi)
+        ramRepo = RamRepository(ramApi, Dispatchers.Unconfined)
     }
 
 

@@ -1,4 +1,4 @@
-package com.greenv.feb14
+package com.greenv.feb14.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.greenv.feb14.databinding.FragmentFirstBinding
 import com.greenv.feb14.response.ResultObject
 import com.greenv.feb14.ui.RamState
-import com.greenv.feb14.ui.RamViewModel
+import com.greenv.feb14.ui.viewmodel.RamViewModel
 import com.greenv.feb14.ui.recycler.RamAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class FirstFragment : Fragment() {
+class RaMFragment : Fragment() {
 
     private lateinit var binding: FragmentFirstBinding
     private val ramAdapter by lazy { RamAdapter() }
