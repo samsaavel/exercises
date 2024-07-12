@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomSheet"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     app:behavior_hideable="false"
     app:behavior_peekHeight="@dimen/dimen_32"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
@@ -27,9 +27,27 @@
         android:layout_margin="@dimen/dimen_16"
         android:text="@string/tv_description"
         android:textSize="@dimen/font_size_16"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBottomSheetModal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_60"
+        android:layout_marginTop="25dp"
+        android:text="@string/btn_modal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBottomSheetPersistent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_60"
+        android:layout_marginTop="25dp"
+        android:text="@string/btn_persistent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBottomSheetModal" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

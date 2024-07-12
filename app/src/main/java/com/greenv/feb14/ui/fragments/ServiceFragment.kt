@@ -18,7 +18,7 @@ class ServiceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentSecondBinding.inflate(layoutInflater)
+        binding = FragmentSecondBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -26,7 +26,7 @@ class ServiceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val intent = Intent(requireActivity(), ForegroundExample::class.java)
 
-        val intentBind = Intent(requireActivity(), ForegroundExample::class.java)
+        //val intentBind = Intent(requireActivity(), ForegroundExample::class.java)
         binding.buttonStart.setOnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             requireActivity().startService(intent)

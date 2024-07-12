@@ -9,3 +9,7 @@ sealed class RamState {
     object Failure : RamState()
     data class Success(val characters: RamResponse) : RamState()
 }
+
+sealed class RamIntent() {
+    object getCharactersIntent : RamIntent()
+}
