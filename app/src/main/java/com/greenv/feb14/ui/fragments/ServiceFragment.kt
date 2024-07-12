@@ -1,4 +1,4 @@
-package com.greenv.feb14
+package com.greenv.feb14.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.greenv.feb14.databinding.FragmentSecondBinding
 import com.greenv.feb14.service.ForegroundExample
 
-class SecondFragment : Fragment() {
+class ServiceFragment : Fragment() {
 
     private lateinit var binding: FragmentSecondBinding
 
@@ -18,19 +18,20 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentSecondBinding.inflate(layoutInflater)
+        binding = FragmentSecondBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val intent = Intent(requireActivity(), ForegroundExample::class.java)
+
+        //val intentBind = Intent(requireActivity(), ForegroundExample::class.java)
         binding.buttonStart.setOnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             requireActivity().startService(intent)
             ContextCompat.startForegroundService(requireActivity(), intent)
         }
-
         binding.buttonStop.setOnClickListener {
             requireActivity().stopService(intent)
         }

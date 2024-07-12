@@ -22,10 +22,10 @@ class RamRepository(
             val responseFromApi = ramApi.getCharacters()
             Log.d("vaneDebug", "fetchCharacters: " + responseFromApi.info)
             Log.d("vaneDebug", "fetchCharacters: " + responseFromApi.results.size)
-            NetworkResponse.Success(responseFromApi)
+            NetworkResponse.Success(data = responseFromApi)
         } catch (e: Throwable) {
             Log.d("vaneDebug", "fetchCharacters: " + e.localizedMessage!!.toString())
-            NetworkResponse.Failure(e)
+            NetworkResponse.Failure
         }
     }
 }

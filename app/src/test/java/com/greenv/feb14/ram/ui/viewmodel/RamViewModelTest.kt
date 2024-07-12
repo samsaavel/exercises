@@ -4,10 +4,11 @@ import com.greenv.feb14.network.NetworkResponse
 import com.greenv.feb14.repository.RamRepositoryContract
 import com.greenv.feb14.response.RamResponse
 import com.greenv.feb14.ui.RamState
-import com.greenv.feb14.ui.RamViewModel
+import com.greenv.feb14.ui.viewmodel.RamViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
@@ -18,24 +19,17 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class RamViewModelTest {
 
-    private val unconfined = UnconfinedTestDispatcher()
-    private val standardScheduler = TestCoroutineScheduler()
-    private val standard = StandardTestDispatcher(standardScheduler)
+    private val unconfined = Dispatchers.Unconfined
 
     @MockK
-    lateinit var ramRepo: RamRepositoryContract
+    private lateinit var ramRepo: RamRepositoryContract
 
     @MockK
-    lateinit var fakeResponse: RamResponse
+    private lateinit var fakeResponse: RamResponse
 
-    @MockK
+    private val failure = NetworkResponse.Failure(Error("TEST ERROR"))
+    private val success = NetworkResponse.Success(fakeResponse)
     private lateinit var ramViewModel: RamViewModel
-
-    @MockK
-    private lateinit var failure: NetworkResponse.Failure
-
-    @MockK
-    private lateinit var success: NetworkResponse.Success<RamResponse>
 
     @Before
     fun setup() {
@@ -58,7 +52,7 @@ class RamViewModelTest {
         ramViewModel.fetchCharacters()
 
         //Then
-        assert(ramViewModel.ramState.value is RamState.Failure)
+        assertTrue(ramViewModel.ramState.value is RamState.Failure)
     }
 
     @Test
@@ -71,6 +65,6 @@ class RamViewModelTest {
         ramViewModel.fetchCharacters()
 
         //Then
-        assert(ramViewModel.ramState.value is RamState.Success)
+        assertTrue(ramViewModel.ramState.value is RamState.Success)
     }
 }

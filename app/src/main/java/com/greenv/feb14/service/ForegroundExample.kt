@@ -21,10 +21,6 @@ class ForegroundExample : Service() {
         return START_STICKY
     }
 
-    override fun onCreate() {
-        super.onCreate()
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         examplePlayer.stop()

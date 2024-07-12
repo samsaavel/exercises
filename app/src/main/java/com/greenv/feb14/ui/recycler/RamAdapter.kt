@@ -1,16 +1,18 @@
 package com.greenv.feb14.ui.recycler
 
-import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.greenv.feb14.databinding.ItemRowListBinding
 import com.greenv.feb14.response.ResultObject
 
-class RamAdapter : RecyclerView.Adapter<RamViewHolder>() {
-
-    private val ramStructure = mutableListOf<ResultObject>()
+class RamAdapter(
+    private val ramStructure: List<ResultObject>,
+) : RecyclerView.Adapter<RamViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RamViewHolder {
-        return RamViewHolder(parent)
+        val binding = ItemRowListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return RamViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RamViewHolder, position: Int) {
@@ -19,9 +21,9 @@ class RamAdapter : RecyclerView.Adapter<RamViewHolder>() {
 
     override fun getItemCount() = ramStructure.size
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun addRamList(newRamList: List<ResultObject>) {
-        ramStructure.addAll(newRamList)
-        notifyDataSetChanged()
-    }
+//    @SuppressLint("NotifyDataSetChanged")
+//    fun addRamList(newRamList: List<ResultObject>) {
+//        ramStructure.addAll(newRamList)
+//        notifyDataSetChanged()
+//    }
 }
