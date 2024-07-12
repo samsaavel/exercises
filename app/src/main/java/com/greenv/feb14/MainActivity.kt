@@ -7,7 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.greenv.feb14.databinding.ActivityMainBinding
 import com.greenv.feb14.ui.fragments.BottomSheetFragment
 import com.greenv.feb14.ui.fragments.RaMFragment
-import com.greenv.feb14.ui.fragments.ServiceFragment
+import com.greenv.feb14.ui.fragments.CounterFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,14 +23,14 @@ class MainActivity : AppCompatActivity() {
         navController()
         //load the initial fragment
         if (savedInstanceState == null)
-            loadFragment(ServiceFragment())
+            loadFragment(CounterFragment())
     }
 
     private fun navController() {
         bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.ram -> {
-                    loadFragment(ServiceFragment())
+                    loadFragment(CounterFragment())
                     true
                 }
 
